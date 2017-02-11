@@ -1,0 +1,19 @@
+LIBRARY GCD.dll
+
+EXPORTS
+ApplyDraw
+CleanCMD
+CleanMemDC
+DrawAlphaImage
+DrawImage
+DrawTranImage
+EnableAllEvent
+FreeImage
+FreeMemDC
+GetConsoleInput
+GetMouseClickEvent
+LoadImage
+NewMemDC
+SetCursorInfo
+SetCursorPosition
+Version
