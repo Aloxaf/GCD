@@ -1,0 +1,130 @@
+#+TITLE: GCD.dll 1.1 帮助
+#+AUTHOR: aiwozhognhuaba
+#+OPTIONS: ^:nil
+
+* 简介
+  GCD原计划打造为为多功能第三方,后因CAPI新的注入方式被发现,停止开发exe版本.\\
+  这是GCD的dll版本,可以供CAPIx调用,用于实现CAPIx难以办到或实现起来较复杂的功能\\
+  *以下函数均需使用Exec调用*
+* 绘图
+** NewMemDC
+   1. 作用:新建一块内存画布
+   2. 用法:NewMemDC *#var ;width ;heighet
+     + var:变量名,用于储存画布的相关信息
+     + width:画布的宽度
+     + height:画布的高度
+     *注:width和height都为0则使用CMD窗口大小创建画布*
+   3. 高级:var储存的值依次为hdcMem, hdcTmp, hCMD, hdcCMD, hdcBMP, rc.right, rc.bottom
+      + hdcMem:内存画布
+      + hdcTmp:临时画布, 不用管
+      + hCMD:CMD窗口句柄
+      + hdcCMD:CMD窗口画布
+      + rc.right, rc.bottom:画布的大小
+** FreeMemDC
+   1. 作用:释放一块内存画布
+   2. 用法:FreeMemDC #DC
+      + DC:通过NewMemDC得到的var的值
+** LoadImage
+   1. 加载一张图片
+   2. 用法:LoadImage *#var $imgfile ;width ;height
+      + var:变量名,用于储存图片的相关信息
+      + imgfile:图片路径,可以是bmp,jpg,gif,png等.如果含有空格或特殊符号需要使用 "#file"
+      + width:需要的图片的宽度
+      + height:需要的图片的高度
+      *注:width和height都为0则使用图片原大小加载*
+   3. 高级:
+     var储存的值依次为img.hBitmap, img.w, img.h
+      + img.hBitmap:图像位图地址
+      + img.w, img.h:图像宽,高 
+** FreeImage
+   1. 作用:释放一张图片
+   2. 用法:FreeImage #IMG
+      + IMG:通过LoadImage得到的var的值
+** DrawImage
+   1. 作用:将图片绘制到指定画布上
+   2. 用法:DrawImage #DC #IMG ;x ;y ;img_x ;img_y ;width ;height
+      + DC:略
+      + IMG:略
+      + x, y:指定绘制点
+      + img_x, img_y, width, height:用于裁剪图片中的一个区域, 为0表示绘制整幅图片
+      
+** DrawTranImage
+   1. 作用:将图片绘制到指定画布上, 并指定透明色
+   2. 用法:DrawTranImage #DC #IMG ;x ;y ;img_x ;img_y ;width ;heigh ;color
+      + color:需要转为透明的颜色,可以通过set /a "color=R<<16|G<<8|B"得到, 16777215为白色
+** DrawAlphaImage
+   1. 作用:将图片绘制到指定画布上, 并且开启其中的透明通道(可以画半透明图)
+   2. 用法:DrawAlphaImage #DC #IMG ;x ;y ;img_x ;img_y ;width ;height
+** ApplyDraw
+   1. 作用:将内存画布中的内容转移到CMD窗口中
+   2. 用法:ApplyDraw #DC
+      + DC:略
+** CleanCMD
+   1. 作用:清空CMD窗口中的图像
+   2. 用法:CleanCMD ;x ;y ;width ;height
+      + x, y, width, height:指定一个矩形区域,该区域内的图像将被清空(都为0则清空所有)
+** CleanMemDC
+   1. 作用:清空内存画布中的图像
+   2. 用法:CleanMemDC #DC
+      + DC:略
+
+* 鼠标
+** GetMouseClickEvent
+   1. 作用:获取鼠标单击事件
+   2. 用法:GetMouseClickEvent ;button ;timeout ;clip *;x *;y
+      + button:单击的按钮(1-左键,2-右键)
+      + timeout:超时时间(ms),<=0则无超时时间
+      + clip:是否限制鼠标移动(0-不限制,1-限制)
+      + x, y:两个变量名,分别储存单击点的X坐标和Y坐标
+** SetCursorInfo
+   1. 作用:设置光标大小,是否隐藏
+   2. 用法:SetMouseInfo ;size ;visible
+      + size:光标大小(有效值从0~100)
+      + visible:是否可见(0-不可见,1-可见)
+** SetCursorPosition
+   1. 作用:设置光标位置
+   2. 用法:SetMousePosition ;x ;y
+      + x, y:光标位置
+
+* 高级
+** EnableAllEvent
+   1. 作用:开启所有事件类型
+   2. 用法:EnableAllEvent
+** GetGetConsoleInput
+   1. 作用:获取一个控制台输入然后返回
+   2. 用法:GetConsoleInput *#var
+     + var:变量名,用于保存相关信息
+   非常强大的函数, 灵活性很高\\
+   该函数返回的是结构体INPUT_RECORD中的各个成员,因比较复杂,直接放出部分源码\\
+   该结构体详见: https://msdn.microsoft.com/en-us/library/windows/desktop/ms683499(v=vs.85).aspx
+#+begin_src c -n
+#define IRMOUSE ir.Event.MouseEvent
+#define IRKEY ir.Event.KeyEvent
+#define IRBUF ir.Event.WindowBufferSizeEvent
+#define IRMENU ir.Event.MenuEvent
+#define IRFOC ir.Event.FocusEvent
+switch (ir.EventType) {
+case KEY_EVENT:
+        sprintf(s, "%d-%d-%d-%d-%d-%c-%d", ir.EventType, IRKEY.bKeyDown, IRKEY.wRepeatCount, IRKEY.wVirtualKeyCode, IRKEY.wVirtualScanCode, IRKEY.uChar.AsciiChar, IRKEY.dwControlKeyState);
+        break;    
+case MOUSE_EVENT:
+        sprintf(s, "%d-%d-%d-%d-%d-%d", ir.EventType, IRMOUSE.dwMousePosition.X, IRMOUSE.dwMousePosition.Y, IRMOUSE.dwButtonState, IRMOUSE.dwControlKeyState, IRMOUSE.dwEventFlags);
+        break;
+case WINDOW_BUFFER_SIZE_EVENT:
+        sprintf(s, "%d-%d-%d", ir.EventType, IRBUF.dwSize.X, IRBUF.dwSize.Y);
+        break;
+case MENU_EVENT:
+        sprintf(s, "%d-%u", ir.EventType, IRMENU.dwCommandID);
+        break;
+case FOCUS_EVENT:
+        sprintf(s, "%d-%d", ir.EventType, IRFOC.bSetFocus);
+}
+return;
+#+end_src
+*注意:分隔符是"-",因此如果用AsciiChar判断按下哪个键的话,可能有bug*
+
+* 其他 
+** Version
+   1. 作用:获取GCD.dll的版本信息
+   2. 用法:Version
+

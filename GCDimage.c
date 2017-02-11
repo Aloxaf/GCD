@@ -12,22 +12,13 @@ typedef struct {
     UINT h;
 } IMAGE;
 
-wchar_t* CharToWchar(char *str)
-{
-    int len       = MultiByteToWideChar(CP_ACP, 0, str, -1, NULL, 0);
-    wchar_t *wstr = (wchar_t *)malloc(len * sizeof(wchar_t));
-    MultiByteToWideChar(CP_ACP, 0, str, len, wstr, 0);
-    return wstr;
-}
-
 /*TODO:可不可以直接从hBitmap中取得位图点阵*/
-DLL_EXPORT void LoadImage(char *varName, char *wfile, int width, int height)
+DLL_EXPORT void LoadImage(char *varName, wchar_t *file, int width, int height)
 {
     GpImage     *thisImage;
     GpGraphics  *graphics = NULL;
     ULONG_PTR   gdiplusToken;
     IMAGE       _img;
-    wchar_t        *file = CharToWchar(wfile);
 
     GdiplusStartupInput GSI = {1, NULL, false, false};
     GdiplusStartup(&gdiplusToken, &GSI, NULL);
