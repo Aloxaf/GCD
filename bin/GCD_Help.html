@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>GCD.dll 1.1 帮助</title>
+<!-- 2017-02-11 Sat 21:19 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="aiwozhognhuaba" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">GCD.dll 1.1 帮助</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 简介</a></li>
+<li><a href="#sec-2">2. 绘图</a>
+<ul>
+<li><a href="#sec-2-1">2.1. NewMemDC</a></li>
+<li><a href="#sec-2-2">2.2. FreeMemDC</a></li>
+<li><a href="#sec-2-3">2.3. LoadImage</a></li>
+<li><a href="#sec-2-4">2.4. FreeImage</a></li>
+<li><a href="#sec-2-5">2.5. DrawImage</a></li>
+<li><a href="#sec-2-6">2.6. DrawTranImage</a></li>
+<li><a href="#sec-2-7">2.7. DrawAlphaImage</a></li>
+<li><a href="#sec-2-8">2.8. ApplyDraw</a></li>
+<li><a href="#sec-2-9">2.9. CleanCMD</a></li>
+<li><a href="#sec-2-10">2.10. CleanMemDC</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. 鼠标</a>
+<ul>
+<li><a href="#sec-3-1">3.1. GetMouseClickEvent</a></li>
+<li><a href="#sec-3-2">3.2. SetCursorInfo</a></li>
+<li><a href="#sec-3-3">3.3. SetCursorPosition</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. 高级</a>
+<ul>
+<li><a href="#sec-4-1">4.1. EnableAllEvent</a></li>
+<li><a href="#sec-4-2">4.2. GetGetConsoleInput</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. 其他</a>
+<ul>
+<li><a href="#sec-5-1">5.1. Version</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 简介</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+GCD原计划打造为为多功能第三方,后因CAPI新的注入方式被发现,停止开发exe版本.<br  />
+  这是GCD的dll版本,可以供CAPIx调用,用于实现CAPIx难以办到或实现起来较复杂的功能<br  />
+  <b>以下函数均需使用Exec调用</b>
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 绘图</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> NewMemDC</h3>
+<div class="outline-text-3" id="text-2-1">
+<ol class="org-ol">
+<li>作用:新建一块内存画布
+</li>
+<li>用法:NewMemDC *#var ;width ;heighet
+<ul class="org-ul">
+<li>var:变量名,用于储存画布的相关信息
+</li>
+<li>width:画布的宽度
+</li>
+<li>height:画布的高度
+</li>
+</ul>
+<p>
+<b>注:width和height都为0则使用CMD窗口大小创建画布</b>
+</p>
+</li>
+<li>高级:var储存的值依次为hdcMem, hdcTmp, hCMD, hdcCMD, hdcBMP, rc.right, rc.bottom
+<ul class="org-ul">
+<li>hdcMem:内存画布
+</li>
+<li>hdcTmp:临时画布, 不用管
+</li>
+<li>hCMD:CMD窗口句柄
+</li>
+<li>hdcCMD:CMD窗口画布
+</li>
+<li>rc.right, rc.bottom:画布的大小
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> FreeMemDC</h3>
+<div class="outline-text-3" id="text-2-2">
+<ol class="org-ol">
+<li>作用:释放一块内存画布
+</li>
+<li>用法:FreeMemDC #DC
+<ul class="org-ul">
+<li>DC:通过NewMemDC得到的var的值
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> LoadImage</h3>
+<div class="outline-text-3" id="text-2-3">
+<ol class="org-ol">
+<li>加载一张图片
+</li>
+<li>用法:LoadImage *#var #imgfile ;width ;height
+<ul class="org-ul">
+<li>var:变量名,用于储存图片的相关信息
+</li>
+<li>imgfile:图片路径,可以是bmp,jpg,gif,png等.如果含有空格或特殊符号需要使用 "#file"
+</li>
+<li>width:需要的图片的宽度
+</li>
+<li>height:需要的图片的高度
+</li>
+</ul>
+<p>
+<b>注:width和height都为0则使用图片原大小加载</b>
+</p>
+</li>
+<li>高级:
+var储存的值依次为img.hBitmap, img.w, img.h
+<ul class="org-ul">
+<li>img.hBitmap:图像位图地址
+</li>
+<li>img.w, img.h:图像宽,高 
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> FreeImage</h3>
+<div class="outline-text-3" id="text-2-4">
+<ol class="org-ol">
+<li>作用:释放一张图片
+</li>
+<li>用法:FreeImage #IMG
+<ul class="org-ul">
+<li>IMG:通过LoadImage得到的var的值
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> DrawImage</h3>
+<div class="outline-text-3" id="text-2-5">
+<ol class="org-ol">
+<li>作用:将图片绘制到指定画布上
+</li>
+<li>用法:DrawImage #DC #IMG ;x ;y ;img_x ;img_y ;width ;height
+<ul class="org-ul">
+<li>DC:略
+</li>
+<li>IMG:略
+</li>
+<li>x, y:指定绘制点
+</li>
+<li>img_x, img_y, width, height:用于裁剪图片中的一个区域, 为0表示绘制整幅图片
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> DrawTranImage</h3>
+<div class="outline-text-3" id="text-2-6">
+<ol class="org-ol">
+<li>作用:将图片绘制到指定画布上, 并指定透明色
+</li>
+<li>用法:DrawTranImage #DC #IMG ;x ;y ;img_x ;img_y ;width ;heigh ;color
+<ul class="org-ul">
+<li>color:需要转为透明的颜色,可以通过set /a "color=R&lt;&lt;16|G&lt;&lt;8|B"得到, 16777215为白色
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> DrawAlphaImage</h3>
+<div class="outline-text-3" id="text-2-7">
+<ol class="org-ol">
+<li>作用:将图片绘制到指定画布上, 并且开启其中的透明通道(可以画半透明图)
+</li>
+<li>用法:DrawAlphaImage #DC #IMG ;x ;y ;img_x ;img_y ;width ;height
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8"><span class="section-number-3">2.8</span> ApplyDraw</h3>
+<div class="outline-text-3" id="text-2-8">
+<ol class="org-ol">
+<li>作用:将内存画布中的内容转移到CMD窗口中
+</li>
+<li>用法:ApplyDraw #DC
+<ul class="org-ul">
+<li>DC:略
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-2-9" class="outline-3">
+<h3 id="sec-2-9"><span class="section-number-3">2.9</span> CleanCMD</h3>
+<div class="outline-text-3" id="text-2-9">
+<ol class="org-ol">
+<li>作用:清空CMD窗口中的图像
+</li>
+<li>用法:CleanCMD ;x ;y ;width ;height
+<ul class="org-ul">
+<li>x, y, width, height:指定一个矩形区域,该区域内的图像将被清空(都为0则清空所有)
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-2-10" class="outline-3">
+<h3 id="sec-2-10"><span class="section-number-3">2.10</span> CleanMemDC</h3>
+<div class="outline-text-3" id="text-2-10">
+<ol class="org-ol">
+<li>作用:清空内存画布中的图像
+</li>
+<li>用法:CleanMemDC #DC
+<ul class="org-ul">
+<li>DC:略
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 鼠标</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> GetMouseClickEvent</h3>
+<div class="outline-text-3" id="text-3-1">
+<ol class="org-ol">
+<li>作用:获取鼠标单击事件
+</li>
+<li>用法:GetMouseClickEvent ;button ;timeout ;clip *;x *;y
+<ul class="org-ul">
+<li>button:单击的按钮(1-左键,2-右键)
+</li>
+<li>timeout:超时时间(ms),&lt;=0则无超时时间
+</li>
+<li>clip:是否限制鼠标移动(0-不限制,1-限制)
+</li>
+<li>x, y:两个变量名,分别储存单击点的X坐标和Y坐标
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> SetCursorInfo</h3>
+<div class="outline-text-3" id="text-3-2">
+<ol class="org-ol">
+<li>作用:设置光标大小,是否隐藏
+</li>
+<li>用法:SetMouseInfo ;size ;visible
+<ul class="org-ul">
+<li>size:光标大小(有效值从0~100)
+</li>
+<li>visible:是否可见(0-不可见,1-可见)
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> SetCursorPosition</h3>
+<div class="outline-text-3" id="text-3-3">
+<ol class="org-ol">
+<li>作用:设置光标位置
+</li>
+<li>用法:SetMousePosition ;x ;y
+<ul class="org-ul">
+<li>x, y:光标位置
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 高级</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> EnableAllEvent</h3>
+<div class="outline-text-3" id="text-4-1">
+<ol class="org-ol">
+<li>作用:开启所有事件类型
+</li>
+<li>用法:EnableAllEvent
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> GetGetConsoleInput</h3>
+<div class="outline-text-3" id="text-4-2">
+<ol class="org-ol">
+<li>作用:获取一个控制台输入然后返回
+</li>
+<li>用法:GetConsoleInput *#var
+<ul class="org-ul">
+<li>var:变量名,用于保存相关信息
+</li>
+</ul>
+</li>
+</ol>
+<p>
+非常强大的函数, 灵活性很高<br  />
+   该函数返回的是结构体INPUT_RECORD中的各个成员,因比较复杂,直接放出部分源码<br  />
+   该结构体详见: <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms683499">https://msdn.microsoft.com/en-us/library/windows/desktop/ms683499</a>(v=vs.85).aspx
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="linenr"> 1: </span><span style="color: #483d8b;">#define</span> <span style="color: #a0522d;">IRMOUSE</span> ir.Event.MouseEvent
+<span class="linenr"> 2: </span><span style="color: #483d8b;">#define</span> <span style="color: #a0522d;">IRKEY</span> ir.Event.KeyEvent
+<span class="linenr"> 3: </span><span style="color: #483d8b;">#define</span> <span style="color: #a0522d;">IRBUF</span> ir.Event.WindowBufferSizeEvent
+<span class="linenr"> 4: </span><span style="color: #483d8b;">#define</span> <span style="color: #a0522d;">IRMENU</span> ir.Event.MenuEvent
+<span class="linenr"> 5: </span><span style="color: #483d8b;">#define</span> <span style="color: #a0522d;">IRFOC</span> ir.Event.FocusEvent
+<span class="linenr"> 6: </span><span style="color: #a020f0;">switch</span> (ir.EventType) {
+<span class="linenr"> 7: </span><span style="color: #a020f0;">case</span> KEY_EVENT:
+<span class="linenr"> 8: </span>        sprintf(s, <span style="color: #8b2252;">"%d-%d-%d-%d-%d-%c-%d"</span>, ir.EventType, IRKEY.bKeyDown, IRKEY.wRepeatCount, IRKEY.wVirtualKeyCode, IRKEY.wVirtualScanCode, IRKEY.uChar.AsciiChar, IRKEY.dwControlKeyState);
+<span class="linenr"> 9: </span>        <span style="color: #a020f0;">break</span>;    
+<span class="linenr">10: </span><span style="color: #a020f0;">case</span> MOUSE_EVENT:
+<span class="linenr">11: </span>        sprintf(s, <span style="color: #8b2252;">"%d-%d-%d-%d-%d-%d"</span>, ir.EventType, IRMOUSE.dwMousePosition.X, IRMOUSE.dwMousePosition.Y, IRMOUSE.dwButtonState, IRMOUSE.dwControlKeyState, IRMOUSE.dwEventFlags);
+<span class="linenr">12: </span>        <span style="color: #a020f0;">break</span>;
+<span class="linenr">13: </span><span style="color: #a020f0;">case</span> WINDOW_BUFFER_SIZE_EVENT:
+<span class="linenr">14: </span>        sprintf(s, <span style="color: #8b2252;">"%d-%d-%d"</span>, ir.EventType, IRBUF.dwSize.X, IRBUF.dwSize.Y);
+<span class="linenr">15: </span>        <span style="color: #a020f0;">break</span>;
+<span class="linenr">16: </span><span style="color: #a020f0;">case</span> MENU_EVENT:
+<span class="linenr">17: </span>        sprintf(s, <span style="color: #8b2252;">"%d-%u"</span>, ir.EventType, IRMENU.dwCommandID);
+<span class="linenr">18: </span>        <span style="color: #a020f0;">break</span>;
+<span class="linenr">19: </span><span style="color: #a020f0;">case</span> FOCUS_EVENT:
+<span class="linenr">20: </span>        sprintf(s, <span style="color: #8b2252;">"%d-%d"</span>, ir.EventType, IRFOC.bSetFocus);
+<span class="linenr">21: </span>}
+<span class="linenr">22: </span><span style="color: #a020f0;">return</span>;
+</pre>
+</div>
+<p>
+<b>注意:分隔符是"-",因此如果用AsciiChar判断按下哪个键的话,可能有bug</b>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 其他</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Version</h3>
+<div class="outline-text-3" id="text-5-1">
+<ol class="org-ol">
+<li>作用:获取GCD.dll的版本信息
+</li>
+<li>用法:Version
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: aiwozhognhuaba</p>
+<p class="date">Created: 2017-02-11 Sat 21:19</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
