@@ -12,14 +12,22 @@ typedef struct {
     UINT h;
 } IMAGE;
 
+wchar_t* CharToWchar(char *str)
+{
+    int len       = MultiByteToWideChar(CP_ACP, 0, str, -1, NULL, 0);
+    wchar_t *wstr = (wchar_t *)malloc(len * sizeof(wchar_t));
+    MultiByteToWideChar(CP_ACP, 0, str, len, wstr, 0);
+    return wstr;
+}
 
 /*TODO:可不可以直接从hBitmap中取得位图点阵*/
-DLL_EXPORT void LoadImage(char *varName, wchar_t *file, int width, int height)
+DLL_EXPORT void LoadImage(char *varName, char *wfile, int width, int height)
 {
     GpImage     *thisImage;
     GpGraphics  *graphics = NULL;
     ULONG_PTR   gdiplusToken;
     IMAGE       _img;
+    wchar_t        *file = CharToWchar(wfile);
 
     GdiplusStartupInput GSI = {1, NULL, false, false};
     GdiplusStartup(&gdiplusToken, &GSI, NULL);
@@ -99,10 +107,9 @@ DLL_EXPORT void DrawTranImage(char *DC, char *ImgInfo, int x, int y, int x1, int
     SelectObject(hdcSrc, img.hBitmap);
     
     if ((width|height) == 0) {
-        TransparentBlt(hdcDst, x, y, img.w - x1, img.h - y1, hdcSrc, x1, y1, img.w - x1, img.h - y1, 
-            clrToTran == 0 ? RGB(255, 255, 255) : clrToTran);
+        TransparentBlt(hdcDst, x, y, img.w - x1, img.h - y1, hdcSrc, x1, y1, img.w - x1, img.h - y1, clrToTran);
     } else {
-        TransparentBlt(hdcDst, x, y, width, height, hdcSrc, x1, y1, width, height, clrToTran == 0 ? RGB(255, 255, 255) : clrToTran);
+        TransparentBlt(hdcDst, x, y, width, height, hdcSrc, x1, y1, width, height, clrToTran);
     }
 }
 

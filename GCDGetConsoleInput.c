@@ -6,6 +6,15 @@
 #define IRMENU ir.Event.MenuEvent
 #define IRFOC ir.Event.FocusEvent
 
+DLL_EXPORT void EnableAllEvent()
+{
+    DWORD OldMode;
+    HANDLE StdInput  = GetStdHandle(STD_INPUT_HANDLE);
+    HANDLE StdOutPut = GetStdHandle(STD_OUTPUT_HANDLE);
+    GetConsoleMode(StdInput, &OldMode);
+    SetConsoleMode(StdInput, OldMode | ENABLE_LINE_INPUT | ENABLE_ECHO_INPUT | ENABLE_PROCESSED_INPUT | ENABLE_WINDOW_INPUT	| ENABLE_MOUSE_INPUT);
+}
+
 DLL_EXPORT void GetConsoleInput(char *s)
 {
     DWORD OldMode, res;
@@ -28,7 +37,7 @@ DLL_EXPORT void GetConsoleInput(char *s)
             sprintf(s, "%d-%d-%d", ir.EventType, IRBUF.dwSize.X, IRBUF.dwSize.Y);
             break;
         case MENU_EVENT:
-            sprintf(s, "%d-%u", ir.EventType, IRMENU.dwCommandID);
+            sprintf(s, "%d-%u", ir.EventType, IRMENU.dwCommandId);
             break;
         case FOCUS_EVENT:
             sprintf(s, "%d-%d", ir.EventType, IRFOC.bSetFocus);
