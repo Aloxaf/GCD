@@ -319,6 +319,14 @@ var储存的值依次为img.hBitmap, img.w, img.h
 <ul class="org-ul">
 <li>color:需要转为透明的颜色,可以通过set /a "color=R&lt;&lt;16|G&lt;&lt;8|B"得到, 16777215为白色
 </li>
+  <li>DC:通过NewMemDC得到的var的值
+</li>
+<li>IMG:通过LoadImage得到的var的值
+</li>
+<li>x, y:指定绘制点
+</li>
+<li>img_x, img_y, width, height:用于裁剪图片中的一个区域, 为0表示绘制整幅图片
+</li>
 </ul>
 </li>
 </ol>
@@ -332,6 +340,16 @@ var储存的值依次为img.hBitmap, img.w, img.h
 </li>
 <li>用法:DrawAlphaImage #DC #IMG ;x ;y ;img_x ;img_y ;width ;height
 </li>
+  <ul class="org-ul">
+<li>DC:通过NewMemDC得到的var的值
+</li>
+<li>IMG:通过LoadImage得到的var的值
+</li>
+<li>x, y:指定绘制点
+</li>
+<li>img_x, img_y, width, height:用于裁剪图片中的一个区域, 为0表示绘制整幅图片
+</li>
+</ul>
 </ol>
 </div>
 </div>
