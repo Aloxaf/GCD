@@ -1,13 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <title>GCD.dll 1.1 帮助</title>
 <!-- 2017-02-11 Sat 21:33 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="aiwozhognhuaba" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="aiwozhognhuaba">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -183,8 +179,8 @@ for the JavaScript code in this tag.
 <h2 id="sec-1"><span class="section-number-2">1</span> 简介</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-GCD原计划打造为为多功能第三方,后因CAPI新的注入方式被发现,停止开发exe版本.<br  />
-  这是GCD的dll版本,可以供CAPIx调用,用于实现CAPIx难以办到或实现起来较复杂的功能<br  />
+GCD原计划打造为为多功能第三方,后因CAPI新的注入方式被发现,停止开发exe版本.<br>
+  这是GCD的dll版本,可以供CAPIx调用,用于实现CAPIx难以办到或实现起来较复杂的功能<br>
   <b>以下函数均需使用Exec调用</b>
 </p>
 </div>
@@ -299,9 +295,9 @@ var储存的值依次为img.hBitmap, img.w, img.h
 </li>
 <li>用法:DrawImage #DC #IMG ;x ;y ;img_x ;img_y ;width ;height
 <ul class="org-ul">
-<li>DC:略
+<li>DC:通过NewMemDC得到的var的值
 </li>
-<li>IMG:略
+<li>IMG:通过LoadImage得到的var的值
 </li>
 <li>x, y:指定绘制点
 </li>
@@ -347,7 +343,8 @@ var储存的值依次为img.hBitmap, img.w, img.h
 </li>
 <li>用法:ApplyDraw #DC
 <ul class="org-ul">
-<li>DC:略
+<li>
+  DC:通过NewMemDC得到的var的值
 </li>
 </ul>
 </li>
@@ -377,7 +374,7 @@ var储存的值依次为img.hBitmap, img.w, img.h
 </li>
 <li>用法:CleanMemDC #DC
 <ul class="org-ul">
-<li>DC:略
+<li>DC:通过NewMemDC得到的var的值
 </li>
 </ul>
 </li>
@@ -472,8 +469,8 @@ var储存的值依次为img.hBitmap, img.w, img.h
 </li>
 </ol>
 <p>
-非常强大的函数, 灵活性很高<br  />
-   该函数返回的是结构体INPUT_RECORD中的各个成员,因比较复杂,直接放出部分源码<br  />
+非常强大的函数, 灵活性很高<br>
+   该函数返回的是结构体INPUT_RECORD中的各个成员,因比较复杂,直接放出部分源码<br>
    该结构体详见: <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms683499">https://msdn.microsoft.com/en-us/library/windows/desktop/ms683499</a>(v=vs.85).aspx
 </p>
 <div class="org-src-container">
@@ -531,5 +528,5 @@ var储存的值依次为img.hBitmap, img.w, img.h
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
-</body>
-</html>
+
+</body></html>
